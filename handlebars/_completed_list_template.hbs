@@ -1,0 +1,6 @@
+{{#each done_todos_by_date}}
+  <dl data-title="{{@key}}" data-total="{{this}}" id="{{@key}}" class='completed'>
+    <dt><time>{{@key}}</time></dt>
+    <dd>{{this}}</dd>
+  </dl>
+{{/each}}
