@@ -1,2 +1,0 @@
-# Todos
-Todo List Manager
