@@ -25,7 +25,11 @@ var TodoList = Backbone.Collection.extend({
     this.groupTodos();
     localStorage.setItem('todos', JSON.stringify(this.toJSON()));
   },
+  comparator: function(model){
+    // return (model.get('completed') ? '1' : '0') + (model.get('due_year') || '0000') + (model.get('due_month') || '00');
+    return model.get('due_year');
+  },
   initialize: function(){
-    this.on("change add remove reset", this.save);
+    this.on("change add remove", this.save);
   }
 });

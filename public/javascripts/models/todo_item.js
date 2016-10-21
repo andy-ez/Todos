@@ -1,7 +1,4 @@
 var TodoItem = Backbone.Model.extend({
-  parse: function(data){
-
-  },
   defaults: {
     title: "Empty Todo Item",
     due_date: 'No Due Date',

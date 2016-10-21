@@ -28,6 +28,6 @@ var App = {
   },
   init: function(){
     this.todos = new TodoList();
-    this.todos.reset(JSON.parse(localStorage.getItem('todos')));
+    this.todos.add(JSON.parse(localStorage.getItem('todos')), {sort: false});
   }
 }
