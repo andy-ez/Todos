@@ -15,19 +15,20 @@ var App = {
   },
   toggleComplete: function(id){
     if (this.todos.get(id).get('completed')) {
-      this.todos.get(id).set('completed', false);
+      this.todos.get(id).save({completed: false});
     }else{
-      this.todos.get(id).set('completed', true);
+      this.todos.get(id).save({completed: true});
     }
   },
   createNewTodo: function(todoItem){
     this.todos.addNewItem(todoItem);
   },
   deleteTodo: function(id){
-    this.todos.remove(id);
+    this.todos.findWhere({id: id}).destroy();
   },
   init: function(){
     this.todos = new TodoList();
-    this.todos.add(JSON.parse(localStorage.getItem('todos')), {sort: false});
+    this.todos.fetch();
+    this.todos.groupTodos();
   }
 }

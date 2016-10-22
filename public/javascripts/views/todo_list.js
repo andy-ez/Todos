@@ -21,7 +21,7 @@ var TodoListView = Backbone.View.extend({
   },
   getID: function(e){
     var row = $(e.target).closest("tr");
-   return +row.attr('data-id');
+   return row.attr('data-id');
   },
   editTodo: function(e){
     App.editTodoItem(this.getID(e));
@@ -68,6 +68,7 @@ var TodoListView = Backbone.View.extend({
       current_section: this.current_section
     }));
     // this.$el.html(this.$el.html());
+    console.log('shown');
   },
   setCurrentSection: function(e){
     this.current_section.title = $(e.currentTarget).attr('data-title');
