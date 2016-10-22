@@ -11,11 +11,14 @@ var TodoList = Backbone.Collection.extend({
     item.save({completed: true});
   },
   updateItem: function(item, new_params){
-    for (prop in new_params){
-      item.save({prop: new_params[prop]});
-    }
+    item.save({title: new_params.title});
+    item.save({due_day: new_params.due_day});
+    item.save({due_month: new_params.due_month});
+    item.save({due_year: new_params.due_year});
+    item.save({description: new_params.description});
     if (item.get('due_month') && item.get('due_year')){
-      item.save({due_date: item.get('due_month') + "/" + item.get('due_year').slice(2)});
+      var formatted_date = item.get('due_month') + "/" + item.get('due_year').slice(2);
+      item.save({due_date: formatted_date});
     }
   },
   groupTodos: function(){

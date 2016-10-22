@@ -29,6 +29,5 @@ var App = {
   init: function(){
     this.todos = new TodoList();
     this.todos.fetch();
-    this.todos.groupTodos();
   }
 }

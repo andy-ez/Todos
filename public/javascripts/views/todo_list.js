@@ -67,8 +67,6 @@ var TodoListView = Backbone.View.extend({
       done_todos_by_date: this.collection.groupedDoneTodos,
       current_section: this.current_section
     }));
-    // this.$el.html(this.$el.html());
-    console.log('shown');
   },
   setCurrentSection: function(e){
     this.current_section.title = $(e.currentTarget).attr('data-title');
