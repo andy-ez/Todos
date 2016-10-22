@@ -21,11 +21,12 @@ var TodoList = Backbone.Collection.extend({
       item.save({due_date: formatted_date});
     }
   },
+  sortByDate: function(model){
+    return +((model.due_year || '0') + (model.due_month || '0'));
+  },
   groupTodos: function(){
-    this.groupedTodos = _.countBy(_.sortBy(this.toJSON(), function(model){
-      return +((model.due_year || '0') + (model.due_month || '0'));
-    }),'due_date');
-    this.groupedDoneTodos = _.countBy((_.where(this.toJSON(), {completed: true})), 'due_date')
+    this.groupedTodos = _.countBy(_.sortBy(this.toJSON(), this.sortByDate),'due_date');
+    this.groupedDoneTodos = _.countBy((_.sortBy(_.where(this.toJSON(), {completed: true}), this.sortByDate)), 'due_date')
   },
   comparator: function(model){
     return +((model.get('completed') ? '1' : '0') + (model.get('due_year') || '0000') + (model.get('due_month') || '00'));
