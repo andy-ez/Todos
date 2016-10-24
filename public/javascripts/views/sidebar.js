@@ -39,8 +39,8 @@ var SidebarView = Backbone.View.extend({
       todos_by_date: this.collection.grouped(),
       done_number: this.collection.where({completed: true}).length,
       done_todos_by_date: this.collection.groupedDone(),
-      current_section: this.current_section
     }));
+    this.active_element = $(this.home_el);
     if (this.current_element){
       var class_name = this.current_element.class,
           title = this.current_element.title;
@@ -51,10 +51,14 @@ var SidebarView = Backbone.View.extend({
   setTitle: function(){
     App.setTitle();
   },
+  updateTitle: function(){
+
+  },
   toggle: function(){
     this.$el.toggle();
   },
   setCurrentSection: function(e){
+    this.active_element = $(e.currentTarget);
     this.current_section.title = $(e.currentTarget).attr('data-title');
     this.current_section.data = $(e.currentTarget).attr('data-total');
     this.trigger('changeSelection');
@@ -69,6 +73,6 @@ var SidebarView = Backbone.View.extend({
     this.render();
     this.$el.find('header').eq(0).addClass('active');
     this.listenTo(this.collection, 'change:completed change:due_date remove', this.render);
-    this.listenTo(this.collection, 'change remove', this.setTitle);
+    this.listenTo(this.collection, 'add change remove', this.setTitle);
   }
 })

@@ -60,7 +60,7 @@ var App = {
     todo.destroy();
   },
   setTitle: function(){
-    this.main_view.setTitle(this.sidebar.current_section);
+    this.main_view.setTitle(this.sidebar.active_element);
   },
   init: function(){
     this.main_view = new TodoListView();

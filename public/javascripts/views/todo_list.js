@@ -15,7 +15,11 @@ var TodoListView = Backbone.View.extend({
   toggleSidebar: function(){
     App.toggleSidebar();
   },
-  setTitle: function(info){
+  setTitle: function($element){
+    var info = {
+      title: $element.attr('data-title'),
+      data: $element.attr('data-total')
+    };
     $('#title_container').html(this.title_template(info));
   },
   render: function(){
