@@ -40,10 +40,9 @@ var EditTodoItemView = Backbone.View.extend({
     this.$overlay.add(this.$form).fadeIn(this.fadeSpeed);
     this.fillInputs(item);
   },
-  initialize: function(item){
+  initialize: function(){
     this.$overlay = $('#modal_layer')
     this.$form = $('#form_modal');
-    this.model = item;
-    this.render(item);
+    this.render(this.model);
   }
 });
